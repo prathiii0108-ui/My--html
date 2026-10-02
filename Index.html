@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Babyyy ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(145deg,#2b0610,#650d20,#180208);
+    color:white;
+    min-height:100vh;
+    text-align:center;
+}
+
+.screen{
+    display:none;
+    min-height:100vh;
+    padding:28px 20px;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.active{
+    display:flex;
+}
+
+.card{
+    width:min(430px,94vw);
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:28px;
+    padding:28px 20px;
+    box-shadow:0 15px 45px #0008;
+    backdrop-filter:blur(8px);
+}
+
+h1{
+    font-size:32px;
+    margin:8px 0 14px;
+}
+
+h2{
+    font-size:25px;
+}
+
+.sub{
+    opacity:.9;
+    line-height:1.6;
+}
+
+button{
+    border:0;
+    border-radius:999px;
+    padding:14px 22px;
+    margin:8px;
+    background:white;
+    color:#650d20;
+    font-weight:700;
+    font-size:16px;
+    box-shadow:0 7px 18px #0005;
+    cursor:pointer;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+.choice{
+    display:block;
+    width:100%;
+    margin:10px 0;
+}
+
+#msg{
+    min-height:28px;
+    font-weight:700;
+    color:#ffd6df;
+}
+
+.heart{
+    font-size:58px;
+    animation:pulse 1.2s infinite;
+}
+
+.photo{
+    width:100%;
+    height:190px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#8e1737,#3b0715);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+    margin:15px 0;
+}
+
+.tiny{
+    font-size:13px;
+    opacity:.7;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+.float{
+    position:fixed;
+    pointer-events:none;
+    animation:fall 2.2s linear forwards;
+    font-size:25px;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(105vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+
+<section class="screen active" id="s1">
+
+<div class="card">
+
+<div class="heart">❤️</div>
+
+<h1>Heyyy Kajjuu...</h1>
+
+<p class="sub">
+I made a tiny little world just for you. 🥹<br>
+Ready to find out what your Babyyy has planned?
+</p>
+
+<button onclick="go(2)">
+OPEN IT 💋
+</button>
+
+<p class="tiny">
+Warning: excessive cuteness ahead 🧿
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 2 -->
+
+<section class="screen" id="s2">
+
+<div class="card">
+
+<h2>First... choose my bouquet 🌹</h2>
+
+<p class="sub">
+No pressure. But choose wisely, Kajjuu. 😌
+</p>
+
+<button class="choice" onclick="wrong()">
+🌹 Red roses
+</button>
+
+<button class="choice" onclick="wrong()">
+🌷 Pink flowers
+</button>
+
+<button class="choice"
+onclick="right('You know meee 😭❤️')">
+❤️ Whatever my Babyyy loves
+</button>
+
+<div id="msg"></div>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 3 : HEART GAME -->
+
+<section class="screen" id="s3">
+
+<div class="card">
+
+<h2>Mini Game 🎮</h2>
+
+<p class="sub">
+Tap the heart <b>5 times</b> before it escapes!
+</p>
+
+<button
+id="tap"
+onclick="tapHeart()"
+style="font-size:42px;padding:20px">
+
+❤️
+
+</button>
+
+<p id="count">
+0 / 5
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 4 : MAIN QUESTION -->
+
+<section class="screen" id="s4">
+
+<div class="card">
+
+<h2>
+Okayyy, important question. 👀
+</h2>
+
+<p class="sub">
+How much do you love me?
+</p>
+
+<button class="choice" onclick="wrong()">
+A little 😌
+</button>
+
+<button class="choice" onclick="wrong()">
+A lottt 🥰
+</button>
+
+<button class="choice" onclick="wrong()">
+More than anything ❤️
+</button>
+
+<button class="choice"
+onclick="right('THAT’S MY BABYYYY ♾️💋💋💋')">
+
+INFINITY ♾️
+
+</button>
+
+<div id="msg"></div>
+
+<button
+id="nextAfterInfinity"
+style="display:none"
+onclick="go(5)">
+
+CONTINUE ❤️
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 5 : MEMORY -->
+
+<section class="screen" id="s5">
+
+<div class="card">
+
+<h2>
+Memory Check 📸
+</h2>
+
+<div class="photo">
+📸❤️
+</div>
+
+<p class="sub">
+Which one sounds most like us?
+</p>
+
+<button class="choice" onclick="wrong()">
+Just another ordinary day
+</button>
+
+<button
+class="choice"
+onclick="right('Exactlyyy. Every little moment became our memory. 🥹❤️')">
+
+A tiny moment that became a forever memory 🥹
+
+</button>
+
+<button class="choice" onclick="wrong()">
+I forgot 😭
+</button>
+
+<div id="msg"></div>
+
+<button
+id="memoryNext"
+style="display:none"
+onclick="go(6)">
+
+NEXT 🧿
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 6 : NAZAR -->
+
+<section class="screen" id="s6">
+
+<div class="card">
+
+<h2>
+🧿 Nazar Challenge
+</h2>
+
+<p class="sub">
+Tap the nazar to protect us!
+</p>
+
+<button
+onclick="nazar()"
+style="font-size:55px;padding:18px">
+
+🧿
+
+</button>
+
+<p id="nazarMsg">
+Tap meee 👀
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 7 : KISS GAME -->
+
+<section class="screen" id="s7">
+
+<div class="card">
+
+<h2>
+Kiss Counter 💋
+</h2>
+
+<p class="sub">
+Send your Babyyy 10 kisses.
+</p>
+
+<button
+onclick="kiss()"
+style="font-size:45px;padding:18px">
+
+💋
+
+</button>
+
+<p id="kcount">
+0 / 10
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 8 : SONG -->
+
+<section class="screen" id="s8">
+
+<div class="card">
+
+<h2>
+🎵 Our little song moment
+</h2>
+
+<p class="sub">
+Now play <b>Brooklyn Baby</b> and stay here for a few seconds. ❤️
+</p>
+
+<div class="photo">
+🎵💋🎵
+</div>
+
+<p class="sub">
+No skipping. This part is for us. 🥹
+</p>
+
+<button onclick="go(9)">
+I'M READY ❤️
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 9 : LETTER -->
+
+<section class="screen" id="s9">
+
+<div class="card">
+
+<h2>
+For My Babyyy 💌
+</h2>
+
+<p class="sub">
+
+You are not just someone I love.
+
+You are one of those people who made ordinary days feel special.
+
+Every silly moment, every little memory,
+every laugh and every tiny effort means something to me.
+
+</p>
+
+<p class="sub">
+
+Whatever happens, I hope you always remember one thing...
+
+</p>
+
+<h2>
+You're my Babyyy. ❤️
+</h2>
+
+<p>
+Loveee youuu, Kajjuu. 🧿♾️💋
+</p>
+
+<button onclick="go(10)">
+ONE LAST THING... 👀
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 10 : FINAL -->
+
+<section class="screen" id="s10">
+
+<div class="card">
+
+<div class="heart">
+❤️‍🔥
+</div>
+
+<h1>
+MY BABYYY
+</h1>
+
+<h2>
+♾️❤️🧿💋
+</h2>
+
+<p class="sub">
+Congratulations. You survived the Babyyy game. 😭
+</p>
+
+<p class="sub">
+<b>
+Now come here and give me a hug. 🫂
+</b>
+</p>
+
+<button onclick="celebrate()">
+💋 ACCEPT
+</button>
+
+</div>
+
+</section>
+
+
+<script>
+
+let tap = 0;
+
+let k = 0;
+
+
+/* CHANGE PAGE */
+
+function go(n){
+
+    document
+    .querySelectorAll('.screen')
+    .forEach(x => x.classList.remove('active'));
+
+    document
+    .getElementById('s'+n)
+    .classList.add('active');
+
+    window.scrollTo(0,0);
+}
+
+
+/* FLOATING EMOJI */
+
+function popup(t){
+
+    let e = document.createElement('div');
+
+    e.className = 'float';
+
+    e.textContent = t;
+
+    e.style.left =
+    Math.random()*90 + 'vw';
+
+    e.style.top = '-30px';
+
+    document.body.appendChild(e);
+
+    setTimeout(() => e.remove(),2300);
+}
+
+
+/* WRONG ANSWER */
+
+function wrong(){
+
+    document
+    .querySelectorAll('#msg')
+    .forEach(x => {
+
+        x.textContent =
+        'Hmmmm... try again Kajjuu 😤❤️';
+
+    });
+
+    popup('😠');
+
+}
+
+
+/* RIGHT ANSWER */
+
+function right(t){
+
+    document
+    .querySelectorAll('#msg')
+    .forEach(x => {
+
+        x.textContent = t;
+
+    });
+
+    for(let i=0;i<8;i++){
+
+        setTimeout(
+            () => popup('💋'),
+            i*100
+        );
+
+    }
+
+    if(document.getElementById('nextAfterInfinity')){
+
+        document.getElementById(
+            'nextAfterInfinity'
+        ).style.display='inline-block';
+
+    }
+
+    if(document.getElementById('memoryNext')){
+
+        document.getElementById(
+            'memoryNext'
+        ).style.display='inline-block';
+
+    }
+
+}
+
+
+/* HEART GAME */
+
+function tapHeart(){
+
+    tap++;
+
+    document.getElementById(
+        'count'
+    ).textContent =
+    tap + ' / 5';
+
+    popup('❤️');
+
+    if(tap >= 5){
+
+        setTimeout(
+            () => go(4),
+            500
+        );
+
+    }
+
+}
+
+
+/* NAZAR */
+
+function nazar(){
+
+    document.getElementById(
+        'nazarMsg'
+    ).textContent =
+    'Nazar removeddd! 🧿❤️';
+
+    for(let i=0;i<6;i++){
+
+        setTimeout(
+            () => popup('🧿'),
+            i*100
+        );
+
+    }
+
+    setTimeout(
+        () => go(7),
+        900
+    );
+
+}
+
+
+/* KISS COUNTER */
+
+function kiss(){
+
+    k++;
+
+    document.getElementById(
+        'kcount'
+    ).textContent =
+    k + ' / 10';
+
+    popup('💋');
+
+    if(k >= 10){
+
+        setTimeout(
+            () => go(8),
+            600
+        );
+
+    }
+
+}
+
+
+/* FINAL CELEBRATION */
+
+function celebrate(){
+
+    for(let i=0;i<25;i++){
+
+        setTimeout(
+
+            () => popup(
+                ['❤️','💋','🧿','✨'][i%4]
+            ),
+
+            i*70
+
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
